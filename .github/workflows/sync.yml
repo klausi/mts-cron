@@ -26,9 +26,6 @@ jobs:
       - name: Check if cache files are there
         run: mkdir -p cache && ls -la cache
 
-      - name: Install GPG to decrypt the configuration file
-        run: sudo apt-get update && sudo apt-get install -y gnupg
-
       - name: Decrypt the configuration file
         run: cd config && gpg --batch --yes --decrypt --passphrase="$GPG_PASSPHRASE" --decrypt mastodon-twitter-sync.toml.gpg > mastodon-twitter-sync.toml
         env:
@@ -41,5 +38,8 @@ jobs:
           latest: true
           fileName: "mastodon-twitter-sync-x86_64-unknown-linux-gnu.tar.gz"
 
+      - name: Extract executable
+        run: tar xzf mastodon-twitter-sync-x86_64-unknown-linux-gnu.tar.gz
+
       - name: Execute sync
-        run: cd cache && ../mastodon-twitter-sync --config=../config/mastodon-twitter-sync.toml
+        run: cd cache && pwd && ../mastodon-twitter-sync --config=../config/mastodon-twitter-sync.toml
