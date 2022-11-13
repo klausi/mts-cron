@@ -21,7 +21,8 @@ jobs:
           path: cache
           # We don't really need a cache key as we never want to throw the cache
           # away.
-          key: ${{ runner.os }}
+          key: cache-${{ steps.build-id.outputs.id }}
+          restore-keys: cache
 
       - name: Check if cache files are there
         run: mkdir -p cache && ls -la cache
