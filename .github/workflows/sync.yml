@@ -24,7 +24,7 @@ jobs:
           key: ${{ runner.os }}
 
       - name: Check if cache files are there
-        run: ls -la cache
+        run: mkdir -p cache && ls -la cache
 
       - name: Install GPG to decrypt the configuration file
         run: sudo apt-get update && sudo apt-get install -y gnupg
