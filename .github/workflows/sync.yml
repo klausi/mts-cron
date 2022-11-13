@@ -21,7 +21,7 @@ jobs:
           path: cache
           # We don't really need a cache key as we never want to throw the cache
           # away.
-          key: cache-${{ steps.build-id.outputs.id }}
+          key: cache-${{ github.run_number }}
           restore-keys: cache
 
       - name: Check if cache files are there
