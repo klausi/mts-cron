@@ -48,3 +48,6 @@ jobs:
 
       - name: Execute sync
         run: cd cache && ../mastodon-twitter-sync --config=../config/mastodon-twitter-sync.toml
+
+      - name: Delete old Github Actions cache entries
+        run: cd config && ./cache-cleanup.sh
